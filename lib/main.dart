@@ -17,18 +17,22 @@ class Hope extends StatelessWidget {
   }
   Expanded creaTecla({ Color color,  int nota,  String text}){
     return Expanded(child: TextButton(
+        child: Text(
+          text,
+          style: TextStyle(fontSize: 22, color: color),
+
+        ),
       onPressed: (){
         teclaSound(nota);
       },
-      style: TextButton.styleFrom(
-        primary: color,
-      ),
-      child: Text(
-       text,
-        style: TextStyle(fontSize: 22),
-      ),
+      style: ButtonStyle(
+      backgroundColor: MaterialStateProperty.resolveWith<Color>(
+      (Set<MaterialState> colorStates) {
+      if (colorStates.contains(MaterialState.pressed)) return Colors.black;
+      return color;
+      }),
     ),
-);
+));
 }
   // This widget is the root of your application.
   @override
